@@ -1,0 +1,16 @@
+{
+  "name": "api-to-csv",
+  "version": "1.0.0",
+  "description": "Basic example of API caller to CSV generator",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "CSV",
+    "API",
+    "fetch"
+  ],
+  "author": "Doug Ross",
+  "license": "ISC"
+}
