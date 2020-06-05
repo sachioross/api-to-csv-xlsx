@@ -12,5 +12,11 @@
     "fetch"
   ],
   "author": "Doug Ross",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "cross-fetch": "^3.0.4",
+    "csv": "^5.3.2",
+    "express": "^4.17.1",
+    "nconf": "^0.10.0"
+  }
 }

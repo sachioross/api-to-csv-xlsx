@@ -1,0 +1,13 @@
+{
+    "request": {
+        "accept": "application/vnd.adobe.target.v3+json",
+        "apiKey": "abcd-1234-abcd-1234",
+        "tenant": "my-tenant"
+    }, 
+    "env": {
+        "server":"http://localhost:9000"
+    }, 
+    "csv": {
+        "file": "report.csv"
+    }
+}
