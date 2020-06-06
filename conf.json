@@ -9,5 +9,9 @@
     }, 
     "csv": {
         "file": "report.csv"
+    }, 
+    "excel": {
+        "creator":"Reporting Tool",
+        "file":"output/excel/report.xlsx"
     }
 }
