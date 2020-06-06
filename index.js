@@ -82,12 +82,12 @@ function writeJsonToCsv(json, file) {
     console.log("Writing JSON to CSV");
     console.log(json);
     stringify(json, stringifyOpts, (err, data) => {
-        // fs.writeFile(`output/csv/${file}`, data, (err) => {
-        //     console.log(err);
-        // })
+        fs.writeFile(`output/csv/${file}`, data, (err) => {
+            console.log(err);
+        })
     });
 }
 
 function writeJsonToExcel(json, file, tab) {
-    
+
 }
