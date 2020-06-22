@@ -46,8 +46,14 @@ console.log("Starting");
 console.log(tenant);
 
 // Setup simple express server for calling examples
-app.get(`/${tenant}/target/auth`, (req, res) => {
-    res.json({"token":"1234567890"});
+app.post(`/${tenant}/target/auth`, (req, res) => {
+    let tokenRes = {
+        "accessToken": "banana-for-scale",
+        "tokenType": "bearer",
+        "scope": "profile_api",
+        "expiresIn": 7775999
+    }
+    res.json(tokenRes);
 }); 
 
 app.get(`/${tenant}/target/activities`, (req, res) => {

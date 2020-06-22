@@ -25,7 +25,16 @@ if (fs.existsSync(reportPath)) {
 }
 
 // Create standardized request skeleton (bearer token will be added later)
-let requestSkeleton = {
+let postRequestSkeleton = {
+    method: 'POST', 
+    headers: {
+        'Accept': accept, 
+        'cache-control': 'no-cache', 
+        'x-api-key': key
+    }
+}
+
+let getRequestSkeleton = {
     method: 'GET', 
     headers: {
         'Accept': accept, 
@@ -39,21 +48,23 @@ const root = `${nconf.get('env:server')}/${tenant}/target`
 const authUrl = `${root}/auth`;
 
 // As tokens are time-based, you'd likely have a token-retrieval operation at the start
-getAuthToken(authUrl, requestSkeleton)
+getAuthToken(authUrl, postRequestSkeleton)
     .then(token => {
 
+        // Retrieved token, logging for development purposes (remove in production)
+        console.log(token);
         // This can be done differently, but for purposes of this demo this 
         // function will call the next fetch(es). To simplify, adding the 
         // bearer token to the requestSkeleton
-        requestSkeleton.headers.authorization = `Bearer ${token}`;
+        getRequestSkeleton.headers.authorization = `Bearer ${token.accessToken}`;
 
         // We'll call the activities ULR and get a sample object
         console.log("Retrieving activites");
         const activiesUrl = `${root}/activities/`
-        fetch(activiesUrl, requestSkeleton)
+        fetch(activiesUrl, getRequestSkeleton)
             .then(res => {
                 // Outputting request to validate that authentication header set
-                console.log(requestSkeleton);
+                console.log(getRequestSkeleton);
 
                 // This is a basic mechanism of fetch API. Can be either .text() or .json(); 
                 // using .json() as we know all responses will be JSON
@@ -70,7 +81,7 @@ getAuthToken(authUrl, requestSkeleton)
         // Just to show adding additional data... 
         console.log("Retrieving audiences");
         const audiencesUrl = `${root}/audiences/`
-        fetch(audiencesUrl, requestSkeleton)
+        fetch(audiencesUrl, getRequestSkeleton)
             .then(res => {
                 return res.json();
             })
@@ -88,7 +99,7 @@ async function getAuthToken(authUrl, requestObj) {
     console.log("Retrieving auth token");
     let authRes = await fetch(authUrl, requestObj);
     tokenJson = await authRes.json();
-    return tokenJson.token;
+    return tokenJson;
 }
 
 function writeJsonToCsv(json, file) { 
