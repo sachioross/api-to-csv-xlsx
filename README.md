@@ -30,9 +30,10 @@ For first-time setup, users should do the following:
 
 From the root of the directory...
 
-1. `yarn start` // starts the mock server
-2. `yarn analyze` // runs an example analysis, outputting two CSV and one Excel file
-3. `yarn stop` // Stops the mock api server
+1. `node start server.js` // starts the mock server
+2. Open a new tab for the same directory
+3. `yarn analyze` // runs an example analysis, outputting two CSV and one Excel file (you can run this multiple times as long as the server is running)
+4. Kill the node process for the server when done
 
 # Output
 
